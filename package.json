@@ -1,0 +1,23 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Public API's that I believe have use to not just myself but the broader community",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "sst dev",
+    "deploy": "sst deploy",
+    "build": "sst build",
+    "remove": "sst remove",
+    "console": "sst console",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^22.4.2",
+    "aws-cdk-lib": "^2.153.0",
+    "sst": "^2.43.6"
+  }
+}
