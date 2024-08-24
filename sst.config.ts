@@ -2,7 +2,7 @@ import { SSTConfig } from 'sst';
 import { API } from './stacks/API';
 import { userInfo } from 'os';
 const username = userInfo().username;
-export const path = process.env['branch'] === 'master' ? '/' : `/${username}-live/`;
+export const path = process.env['branch'] === 'master' ? '' : `/${username}-live/`;
 
 export default {
   config(_input) {
