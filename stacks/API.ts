@@ -1,9 +1,14 @@
 import { Certificate } from "aws-cdk-lib/aws-certificatemanager";
 import { StackContext, Api } from 'sst/constructs'
-import sstConfig, { path } from '../sst.config'
+import sstConfig from '../sst.config'
+import { userInfo } from 'os';
 
+let path
+const username = userInfo().username;
 const certArn = process.env['CERT_ARN'] || '';
+const branch = process.env['BRANCH'] || '';
 
+if ()
 
 export function API({ stack }: StackContext) {
     const api = new Api(stack, 'Api', {
