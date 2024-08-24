@@ -40,7 +40,6 @@ export async function fetchAndExtractScripts(list_id: string) {
     const htmlContent: string = await request.clone().text();
     const specificScriptRegex = /<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gm;
 
-    let scripts: string[] = [];
     let match: any
     let regex = new RegExp(specificScriptRegex);
 

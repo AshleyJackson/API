@@ -1,7 +1,5 @@
 import { Certificate } from "aws-cdk-lib/aws-certificatemanager";
 import { StackContext, Api } from 'sst/constructs'
-// import sstConfig from '../sst.config'
-// import { userInfo } from 'os';
 
 const certArn = process.env['CERT_ARN'] as string
 
