@@ -22,8 +22,9 @@ type imdb_meta = {
     description: string,
 }
 
-export async function fetchAndExtractScripts(url: string) {
-    const request = await fetch("https://www.imdb.com/list/" + url, {
+export async function fetchAndExtractScripts(list_id: string) {
+    const url = "https://www.imdb.com/list/" + list_id;
+    const request = await fetch(url, {
         headers: {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36'
         }
@@ -32,7 +33,7 @@ export async function fetchAndExtractScripts(url: string) {
         return {
             statusCode: 400,
             body: JSON.stringify({
-                error: 'Failed to fetch URL',
+                error: request.statusText,
             }),
         };
     }
