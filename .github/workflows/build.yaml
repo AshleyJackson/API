@@ -42,6 +42,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Deploy
+        if: ${{ github.ref == 'refs/heads/master' }}
         # Run the deploy command with environment variables
         run: |
-          npm install --no-audit && npx sst deploy --stage ${{ env.branch }}
+          npm install --no-audit && npx sst deploy --stage prod
