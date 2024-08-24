@@ -1,14 +1,9 @@
 import { Certificate } from "aws-cdk-lib/aws-certificatemanager";
 import { StackContext, Api } from 'sst/constructs'
-import sstConfig from '../sst.config'
-import { userInfo } from 'os';
+// import sstConfig from '../sst.config'
+// import { userInfo } from 'os';
 
-let path
-const username = userInfo().username;
-const certArn = process.env['CERT_ARN'] || '';
-const branch = process.env['BRANCH'] || '';
-
-if ()
+const certArn = process.env['CERT_ARN'] as string
 
 export function API({ stack }: StackContext) {
     const api = new Api(stack, 'Api', {
@@ -18,7 +13,6 @@ export function API({ stack }: StackContext) {
         },
         customDomain: {
             domainName: 'api.ashleyjackson.net',
-            path: path,
             isExternalDomain: true,
             cdk: {
                 certificate: Certificate.fromCertificateArn(stack, 'Certificate', certArn),
