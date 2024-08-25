@@ -22,8 +22,4 @@ export function API({ stack }: StackContext) {
     stack.addOutputs({
         ApiEndpoint: api.url,
     })
-    stack.setDefaultFunctionProps({
-        timeout: 30,
-        memorySize: 128,
-    });
 }
