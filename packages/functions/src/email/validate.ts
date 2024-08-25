@@ -12,9 +12,12 @@ export const handler = ApiHandler(async (_evt) => {
         };
     }
 
-    const { validators } = await validate(email);
+    console.log(`Validating email: ${email}`);
+    const request = await validate(email);
+    console.log(`Validation result: ${JSON.stringify(request)}`);
+
     return {
         statusCode: 200,
-        body: JSON.stringify(validators),
+        body: JSON.stringify(request),
     };
 })
