@@ -13,7 +13,11 @@ export const handler = ApiHandler(async (_evt) => {
     }
 
     console.log(`Validating email: ${email}`);
-    const request = await validate(email);
+    const request = await validate({
+        email: email,
+        validateMx: false, // Note: Disabled for now, as it requires the function to have internet access
+        validateSMTP: false, // Note: Disabled for now, as it requires the function to have internet access
+    });
     console.log(`Validation result: ${JSON.stringify(request)}`);
 
     return {
