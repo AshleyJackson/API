@@ -86,24 +86,16 @@ export async function fetchAndExtractScripts(list_id: string) {
 }
 
 export const handler = ApiHandler(async (_evt) => {
-    const url = _evt.queryStringParameters.url;
-    if (!url) {
+    const list_id = _evt.pathParameters?.id;
+    if (!list_id) {
         return {
             statusCode: 400,
             body: JSON.stringify({
-                error: 'Missing url Parameter',
+                error: 'Missing list_id',
             }),
         };
     }
-    if (url.search('ls') === -1) {
-        return {
-            statusCode: 400,
-            body: JSON.stringify({
-                error: 'Invalid URL. Must be a valid IMDb list ID. e.g. ls123456789. Nothing more, nothing less.',
-            }),
-        };
-    }
-    const request = await fetchAndExtractScripts(url);
+    const request = await fetchAndExtractScripts(list_id);
 
     return {
         statusCode: 200,

@@ -7,7 +7,8 @@ export function API({ stack }: StackContext) {
     const api = new Api(stack, 'Api', {
         routes: {
             'GET /': 'packages/functions/src/home.handler',
-            'GET /imdb': 'packages/functions/src/imdb.handler',
+            'GET /imdb/list/{id}': 'packages/functions/src/list.handler',
+            'GET /imdb/title/{id}': 'packages/functions/src/title.handler',
         },
         customDomain: {
             domainName: 'api.ashleyjackson.net',
