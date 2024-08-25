@@ -12,14 +12,9 @@ export const handler = ApiHandler(async (_evt) => {
         };
     }
 
-    const { valid, reason, validators } = await validate(email);
+    const { validators } = await validate(email);
     return {
         statusCode: 200,
-        body: JSON.stringify({
-            email,
-            valid,
-            reason,
-            validators,
-        }),
+        body: JSON.stringify(validators),
     };
 })
