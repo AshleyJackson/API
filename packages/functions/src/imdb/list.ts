@@ -7,7 +7,7 @@ type imdb_items = {
     image: string,
     description: string,
     alternateName: string,
-    aggregateRating: {
+    aggregateRating?: {
         ratingValue: number,
         bestRating: number,
         worstRating: number,
@@ -24,6 +24,12 @@ type imdb_meta = {
 
 export async function fetchAndExtractScripts(list_id: string) {
     const url = "https://www.imdb.com/list/" + list_id;
+    if (list_id.startsWith("ls") === false) return {
+        statusCode: 400,
+        body: JSON.stringify({
+            error: 'Invalid list_id',
+        }),
+    }
     const request = await fetch(url, {
         headers: {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36'
