@@ -23,6 +23,7 @@ type imdb_meta = {
 }
 
 export async function fetchAndExtractScripts(list_id: string) {
+    console.log(`Fetching list: ${list_id}`);
     const url = "https://www.imdb.com/list/" + list_id;
     if (list_id.startsWith("ls") === false) return {
         statusCode: 400,

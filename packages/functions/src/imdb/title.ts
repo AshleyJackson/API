@@ -19,7 +19,7 @@ type Title = {
 }
 
 export async function fetchAndExtractScripts(title_id: string) {
-
+    console.log("Fetching Title: ", title_id);
     const url = "https://www.imdb.com/title/" + title_id + "/";
     const request = await fetch(url, {
         headers: {
