@@ -46,20 +46,20 @@ export const handler = ApiHandler(async (_evt) => {
         valid: request.valid,
         validators: {
             regex: {
-                valid: request.data.validators.regex.valid,
+                valid: request.validators.regex.valid,
             },
             typo: {
-                valid: request.data.validators.typo.valid,
+                valid: request.validators.typo.valid,
             },
             disposable: {
-                valid: request.data.validators.disposable.valid,
+                valid: request.validators.disposable.valid,
             },
             mx: {
-                valid: request.data.validators.mx.valid,
+                valid: request.validators.mx.valid,
                 note: "Disabled as of 2024-09-01",
             },
             smtp: {
-                valid: request.data.validators.smtp.valid,
+                valid: request.validators.smtp.valid,
                 note: "Disabled as of 2024-09-01",
             },
         }
