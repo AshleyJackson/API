@@ -42,6 +42,7 @@ export const handler = ApiHandler(async (_evt) => {
         validateMx: false, // Note: Disabled for now, as it requires the function to have internet access
         validateSMTP: false, // Note: Disabled for now, as it requires the function to have internet access
     });
+    console.log(`Validation result: ${JSON.stringify(request)}`);
     output = {
         valid: request.valid,
         validators: {
