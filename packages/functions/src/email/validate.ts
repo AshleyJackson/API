@@ -46,6 +46,6 @@ export const handler = ApiHandler(async (_evt) => {
 	console.log(`Validation result: ${JSON.stringify(request)}`);
 	return {
 		statusCode: 200,
-		body: request,
+		body: JSON.stringify(request),
 	};
 })
