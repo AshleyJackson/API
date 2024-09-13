@@ -1,7 +1,31 @@
 import { ApiHandler } from "sst/node/api";
 import { validate } from 'deep-email-validator'
 
+type output = {
+    valid: boolean,
+    validators: {
+        regex: {
+            valid: boolean,
+        },
+        typo: {
+            valid: boolean,
+        },
+        disposable: {
+            valid: boolean,
+        },
+        mx: {
+            valid: boolean,
+            note: string,
+        },
+        smtp: {
+            valid: boolean,
+            note: string,
+        },
+    }
+}
+
 export const handler = ApiHandler(async (_evt) => {
+    let output: output
     const email = _evt.pathParameters?.email;
     if (!email) {
         return {
@@ -13,15 +37,35 @@ export const handler = ApiHandler(async (_evt) => {
     }
 
     console.log(`Validating email: ${email}`);
-    const request = await validate({
+    const request: any = await validate({
         email: email,
         validateMx: false, // Note: Disabled for now, as it requires the function to have internet access
         validateSMTP: false, // Note: Disabled for now, as it requires the function to have internet access
     });
-    console.log(`Validation result: ${JSON.stringify(request)}`);
-
+    output = {
+        valid: request.valid,
+        validators: {
+            regex: {
+                valid: request.data.validators.regex.valid,
+            },
+            typo: {
+                valid: request.data.validators.typo.valid,
+            },
+            disposable: {
+                valid: request.data.validators.disposable.valid,
+            },
+            mx: {
+                valid: request.data.validators.mx.valid,
+                note: "Disabled as of 2024-09-01",
+            },
+            smtp: {
+                valid: request.data.validators.smtp.valid,
+                note: "Disabled as of 2024-09-01",
+            },
+        }
+    }
     return {
         statusCode: 200,
-        body: JSON.stringify(request),
+        body: output,
     };
 })
