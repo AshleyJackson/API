@@ -20,6 +20,7 @@ export const handler = ApiHandler(async (_evt) => {
 			// validateMx: false,
 			// validateSMTP: false,
 		});
+		console.log(`Validation result: ${JSON.stringify(request)}`);
 	} catch (error) {
 		console.error(`Validation error: ${error}`);
 		return {
