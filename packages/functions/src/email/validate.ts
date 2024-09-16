@@ -18,7 +18,7 @@ export const handler = ApiHandler(async (_evt) => {
 		request = await validate({
 			email: email,
 			// validateMx: false,
-			// validateSMTP: false,
+			validateSMTP: false,
 		});
 		console.log(`Validation result: ${JSON.stringify(request)}`);
 	} catch (error) {
