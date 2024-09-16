@@ -33,7 +33,7 @@ jobs:
 
       - name: Deploy
         if: ${{ github.ref == 'refs/heads/master' }}
-        run: bun deploy
+        run: bun run deploy
       # - name: Set up Node.js
       #   uses: actions/setup-node@v4
       #   with:
