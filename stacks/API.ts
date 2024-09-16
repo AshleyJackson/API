@@ -12,7 +12,6 @@ export function API({ stack }: StackContext) {
 			'GET /email/validate/{email}': 'packages/functions/src/email/validate.handler',
 		},
 		customDomain: {
-			path: '/',
 			domainName: 'api.ashleyjackson.net',
 			isExternalDomain: true,
 			cdk: {
