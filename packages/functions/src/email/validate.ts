@@ -17,6 +17,7 @@ export const handler = ApiHandler(async (_evt) => {
 	try {
 		request = await validate({
 			email: email,
+			port: 587,
 		});
 	} catch (error) {
 		console.error(`Validation error: ${error}`);
