@@ -1,9 +1,20 @@
 import { Certificate } from "aws-cdk-lib/aws-certificatemanager";
 import { StackContext, Api } from 'sst/constructs'
+import sstConfig from "../sst.config";
 
 const certArn = process.env['CERT_ARN'] as string
+let domain: string
 
 export function API({ stack }: StackContext) {
+
+  const stage = sstConfig.config({}).stage
+
+	if (stage === 'runner-live') {
+		domain = 'api.ashleyjackson.net'
+	} else {
+		domain = `prod.ashleyjackson.net`
+	}
+
 	const api = new Api(stack, 'Api', {
 		routes: {
 			'GET /': 'packages/functions/src/home.handler',
@@ -12,7 +23,7 @@ export function API({ stack }: StackContext) {
 			'GET /email/validate/{email}': 'packages/functions/src/email/validate.handler',
 		},
 		customDomain: {
-			domainName: 'api.ashleyjackson.net',
+			domainName: domain,
 			isExternalDomain: true,
 			cdk: {
 				certificate: Certificate.fromCertificateArn(stack, 'Certificate', certArn),

@@ -1,5 +1,5 @@
 import { ApiHandler } from "sst/node/api";
-import { validate } from 'deep-email-validator'
+import { validate } from '@ashleyjackson-org/email-validator';
 
 export const handler = ApiHandler(async (_evt) => {
 	const email = _evt.pathParameters?.email;
@@ -17,10 +17,9 @@ export const handler = ApiHandler(async (_evt) => {
 	try {
 		request = await validate({
 			email: email,
-			// validateMx: false,
+			validateMx: false,
 			validateSMTP: false,
 		});
-		console.log(`Validation result: ${JSON.stringify(request)}`);
 	} catch (error) {
 		console.error(`Validation error: ${error}`);
 		return {
@@ -31,7 +30,6 @@ export const handler = ApiHandler(async (_evt) => {
 		};
 	}
 
-	console.log(`Validation result: ${JSON.stringify(request)}`);
 	return {
 		statusCode: 200,
 		body: JSON.stringify(request),
