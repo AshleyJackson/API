@@ -9,14 +9,14 @@ export default {
 	config(_input) {
 		if (user_stage === 'runner-live') {
 			return {
-				name: "modules",
+				name: "API",
 				stage: branch,
 				region: "ap-southeast-2",
 			};
 		}
 		else {
 			return {
-				name: "modules",
+				name: "API",
 				stage: user_stage,
 				region: "ap-southeast-2",
 			};

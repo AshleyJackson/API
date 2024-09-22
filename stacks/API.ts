@@ -7,12 +7,12 @@ let domain: string
 
 export function API({ stack }: StackContext) {
 
-  const stage = sstConfig.config({}).stage
+	const stage = sstConfig.config({}).stage
 
-	if (stage === 'runner-live') {
-		domain = 'api.ashleyjackson.net'
+	if (stage.includes('live')) {
+		domain = 'live.ashleyjackson.net'
 	} else {
-		domain = `prod.ashleyjackson.net`
+		domain = 'api.ashleyjackson.net'
 	}
 
 	const api = new Api(stack, 'Api', {
@@ -23,6 +23,7 @@ export function API({ stack }: StackContext) {
 			'GET /email/validate/{email}': 'packages/functions/src/email/validate.handler',
 		},
 		customDomain: {
+			stage: stage,
 			domainName: domain,
 			isExternalDomain: true,
 			cdk: {
