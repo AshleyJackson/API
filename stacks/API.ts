@@ -2,7 +2,6 @@ import { Certificate } from "aws-cdk-lib/aws-certificatemanager";
 import { StackContext, Api } from 'sst/constructs'
 import sstConfig from "../sst.config";
 
-const certArn = process.env['CERT_ARN'] as string
 let domain: string
 
 export function API({ stack }: StackContext) {
@@ -10,7 +9,7 @@ export function API({ stack }: StackContext) {
 	const stage = sstConfig.config({}).stage
 
 	if (stage.includes('live')) {
-		domain = 'live.ashleyjackson.net'
+		domain = stage + '.ashleyjackson.net'
 	} else {
 		domain = 'api.ashleyjackson.net'
 	}
@@ -27,7 +26,7 @@ export function API({ stack }: StackContext) {
 			domainName: domain,
 			isExternalDomain: true,
 			cdk: {
-				certificate: Certificate.fromCertificateArn(stack, 'Certificate', certArn),
+				certificate: Certificate.fromCertificateArn(stack, 'Certificate', "arn:aws:acm:ap-southeast-2:703757905289:certificate/fd977540-0d7c-4cbe-abd6-9b0b4e6ca606"),
 			}
 		},
 	});
