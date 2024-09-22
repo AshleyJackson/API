@@ -22,7 +22,6 @@ export function API({ stack }: StackContext) {
 			'GET /email/validate/{email}': 'packages/functions/src/email/validate.handler',
 		},
 		customDomain: {
-			stage: stage,
 			domainName: domain,
 			isExternalDomain: true,
 			cdk: {

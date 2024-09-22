@@ -17,8 +17,6 @@ export const handler = ApiHandler(async (_evt) => {
 	try {
 		request = await validate({
 			email: email,
-			validateMx: false,
-			validateSMTP: false,
 		});
 	} catch (error) {
 		console.error(`Validation error: ${error}`);
