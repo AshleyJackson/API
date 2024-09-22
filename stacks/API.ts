@@ -8,10 +8,10 @@ export function API({ stack }: StackContext) {
 
 	const stage = sstConfig.config({}).stage
 
-	if (stage.includes('live')) {
-		domain = stage + '.ashleyjackson.net'
-	} else {
+	if (stage === 'API') {
 		domain = 'api.ashleyjackson.net'
+	} else {
+		domain = `local.ashleyjackson.net`
 	}
 
 	const api = new Api(stack, 'Api', {

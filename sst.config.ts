@@ -2,18 +2,19 @@ import { SSTConfig } from "sst";
 import { API } from "./stacks/API";
 import { userInfo } from "os";
 const username = userInfo().username;
-export const user_stage = username.toLowerCase() + '-live';
-const branch = process.env['branch']! || user_stage;
+const user_stage = username.toLowerCase();
 
 export default {
 	config(_input) {
-		if (user_stage === 'runner-live') {
+		// v GitHub Actions
+		if (user_stage === 'runner') {
 			return {
 				name: "API",
-				stage: branch,
+				stage: 'API',
 				region: "ap-southeast-2",
 			};
 		}
+		// v Local
 		else {
 			return {
 				name: "API",
