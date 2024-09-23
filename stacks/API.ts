@@ -11,7 +11,7 @@ export function API({ stack }: StackContext) {
 	if (stage === 'API') {
 		domain = 'api.ashleyjackson.net'
 	} else {
-		domain = `local.ashleyjackson.net`
+		domain = `${stage}.ashleyjackson.net`
 	}
 
 	const api = new Api(stack, 'Api', {

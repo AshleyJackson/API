@@ -1,7 +1,8 @@
 import { SSTConfig } from "sst";
 import { API } from "./stacks/API";
-import { userInfo } from "os";
+import { userInfo, hostname } from "os";
 const username = userInfo().username;
+const hsn = hostname();
 const user_stage = username.toLowerCase();
 
 export default {
@@ -18,7 +19,7 @@ export default {
 		else {
 			return {
 				name: "API",
-				stage: user_stage,
+				stage: hsn,
 				region: "ap-southeast-2",
 			};
 		}
