@@ -13,6 +13,7 @@ export function API({ stack }: StackContext) {
 	} else {
 		domain = `${stage}.ashleyjackson.net`
 	}
+	console.log(`\nAPI Domain: ${domain}`)
 
 	const api = new Api(stack, 'Api', {
 		routes: {
