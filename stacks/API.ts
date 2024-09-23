@@ -21,6 +21,7 @@ export function API({ stack }: StackContext) {
 			'GET /imdb/list/{id}': 'packages/functions/src/imdb/list.handler',
 			'GET /imdb/title/{id}': 'packages/functions/src/imdb/title.handler',
 			'GET /email/validate/{email}': 'packages/functions/src/email/validate.handler',
+			'GET /domain/lookup/{domain}': 'packages/functions/src/whois/lookup.handler',
 		},
 		customDomain: {
 			domainName: domain,
