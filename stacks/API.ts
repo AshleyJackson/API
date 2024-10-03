@@ -31,5 +31,6 @@ export function API({ stack }: StackContext) {
 	});
 	stack.addOutputs({
 		apiEndpoint: api.url,
+		stage: stage,
 	})
 }

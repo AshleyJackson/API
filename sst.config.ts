@@ -5,6 +5,7 @@ import { username, stage } from "./packages/functions/common/consts";
 
 export default {
 	config(_input) {
+		console.log('username:', username)
 		if (username === 'runner-live') { // GitHub Actions
 			return {
 				name: 'API',
