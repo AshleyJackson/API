@@ -1,29 +1,27 @@
 import { Certificate } from "aws-cdk-lib/aws-certificatemanager";
 import { StackContext, Api } from 'sst/constructs'
-import sstConfig from "../sst.config";
+import routes from '../packages/functions/common/routes'
+import { stage } from '../packages/functions/common/consts'
 
 let domain: string
 
 export function API({ stack }: StackContext) {
 
-	const stage = sstConfig.config({}).stage
+	stack.setDefaultFunctionProps({
+		runtime: 'nodejs18.x',
+		memorySize: 256,
+		timeout: 30,
+	});
 
-	if (stage === 'API') {
+	if (stage.includes('live')) {
+		domain = stage + '.ashleyjackson.net'
+	} else if (stage === 'v1') {
 		domain = 'api.ashleyjackson.net'
-	} else {
-		domain = `${stage}.ashleyjackson.net`
 	}
-	console.log(`\nAPI Domain: ${domain}`)
-
 	const api = new Api(stack, 'Api', {
-		routes: {
-			'GET /': 'packages/functions/src/home.handler',
-			'GET /imdb/list/{id}': 'packages/functions/src/imdb/list.handler',
-			'GET /imdb/title/{id}': 'packages/functions/src/imdb/title.handler',
-			'GET /email/validate/{email}': 'packages/functions/src/email/validate.handler',
-			'GET /domain/lookup/{domain}': 'packages/functions/src/whois/lookup.handler',
-		},
+		routes: routes,
 		customDomain: {
+			path: stage,
 			domainName: domain,
 			isExternalDomain: true,
 			cdk: {
@@ -32,6 +30,6 @@ export function API({ stack }: StackContext) {
 		},
 	});
 	stack.addOutputs({
-		ApiEndpoint: api.url,
+		apiEndpoint: api.url,
 	})
 }

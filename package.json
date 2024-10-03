@@ -1,32 +1,37 @@
 {
-  "name": "api",
-  "version": "1.0.0",
-  "description": "Public API's that I believe have use to not just myself but the broader community",
-  "type": "module",
-  "main": "index.js",
-  "scripts": {
-    "dev": "sst dev",
-    "deploy": "sst deploy --stage prod",
-    "build": "sst build",
-    "remove": "sst remove",
-    "console": "sst console",
-    "typecheck": "tsc --noEmit"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@ashleyjackson-org/email-validator": "^0.1.23",
-    "@types/node": "^22.4.2",
-    "aws-cdk-lib": "^2.158.0",
-    "constructs": "^10.3.0",
-    "sst": "^2.43.7",
-    "typescript": "^5.6.2",
-    "whoiser": "^1.18.0"
-  },
-  "trustedDependencies": [
-    "aws-crt",
-    "aws-sdk",
-    "esbuild"
-  ]
+	"name": "api",
+	"version": "1.0.0",
+	"private": true,
+	"module": "esnext",
+	"target": "es2020",
+	"description": "Public API's that I believe have use to not just myself but the broader community",
+	"type": "module",
+	"scripts": {
+		"dev": "sst dev",
+		"deploy": "sst deploy --stage prod",
+		"postinstall": "bun run ./build.ts",
+		"build": "sst build",
+		"remove": "sst remove",
+		"console": "sst console",
+		"typecheck": "tsc --noEmit"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@ashleyjackson-org/email-validator": "^0.1.23",
+		"@tsconfig/node18": "^18.2.4",
+		"@types/node": "^22.7.4",
+		"aws-cdk-lib": "^2.160.0",
+		"constructs": "^10.3.0",
+		"dotenv": "^16.4.5",
+		"sst": "^2.43.7",
+		"typescript": "^5.6.2",
+		"whoiser": "^1.18.0"
+	},
+	"trustedDependencies": [
+		"aws-crt",
+		"aws-sdk",
+		"esbuild"
+	]
 }

@@ -130,3 +130,5 @@ dist
 .pnp.*
 .sst
 .env
+packages/functions/common/routes.ts
+cdk.context.json
