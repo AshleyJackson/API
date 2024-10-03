@@ -8,7 +8,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "sst dev",
-		"deploy": "sst deploy --stage prod",
+		"deploy": "sst deploy",
 		"postinstall": "bun run ./build.ts",
 		"build": "sst build",
 		"remove": "sst remove",
