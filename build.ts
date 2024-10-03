@@ -22,7 +22,7 @@ export const functions: deployed_functionality[] = [
 		method: "GET",
 		endpoint: "/",
 		handler: "packages/functions/src/home.handler",
-		stage: ["API"]
+		stage: ["v1"]
 	},
 	{
 		name: "imdb_list_get",
@@ -30,7 +30,7 @@ export const functions: deployed_functionality[] = [
 		method: "GET",
 		endpoint: "/imdb/list/{id}",
 		handler: "packages/functions/src/imdb/list.handler",
-		stage: ["API"]
+		stage: ["v1"]
 	},
 	{
 		name: "imdb_title_get",
@@ -38,7 +38,7 @@ export const functions: deployed_functionality[] = [
 		method: "GET",
 		endpoint: "/imdb/title/{id}",
 		handler: "packages/functions/src/imdb/title.handler",
-		stage: ["API"]
+		stage: ["v1"]
 	},
 	{
 		name: "email_validate_get",
@@ -46,7 +46,7 @@ export const functions: deployed_functionality[] = [
 		method: "GET",
 		endpoint: "/email/validate/{email}",
 		handler: "packages/functions/src/email/validate.handler",
-		stage: ["API"]
+		stage: ["v1"]
 	},
 	{
 		name: "domain_lookup_get",
@@ -54,7 +54,7 @@ export const functions: deployed_functionality[] = [
 		method: "GET",
 		endpoint: "/domain/lookup/{domain}",
 		handler: "packages/functions/src/domain/lookup.handler",
-		stage: ["API"]
+		stage: ["v1"]
 	}
 ]
 
@@ -95,6 +95,7 @@ export async function start() {
 	const routes = await buildRoutes(stage)
 	fs.writeFileSync("packages/functions/common/routes.ts", "");
 	let default_export = `export default {\n}`;
+	console.log(routes)
 	if (!routes) {
 		console.log("No routes found")
 		process.exit(1);
