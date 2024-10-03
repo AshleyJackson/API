@@ -31,5 +31,5 @@ jobs:
         run: bun install
 
       - name: Deploy
-        if: ${{ github.ref == 'refs/heads/master' }}
+        if: ${{ github.ref_name == 'v1' }}
         run: bun run deploy
